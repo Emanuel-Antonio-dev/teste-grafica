@@ -85,20 +85,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Impressão offset e digital de alta qualidade, embalagens, cartões e materiais promocionais. Prazos rápidos, acabamentos premium e atendimento consultivo.",
       },
       { name: "author", content: "Gráfica Prisma" },
-      { property: "og:title", content: "Gráfica Prisma — Impressão Premium" },
+      { property: "og:title", content: "Gráfica Prisma — Impressão Premium & Design Gráfico" },
       {
         property: "og:description",
         content:
-          "Estúdio gráfico e impressão premium. Cartões, flyers, embalagens e sinalética com acabamentos de excelência.",
+          "Impressão offset e digital de alta qualidade, embalagens, cartões e materiais promocionais. Prazos rápidos, acabamentos premium e atendimento consultivo.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Gráfica Prisma" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Gráfica Prisma — Impressão Premium" },
+      { name: "twitter:title", content: "Gráfica Prisma — Impressão Premium & Design Gráfico" },
       {
         name: "twitter:description",
-        content: "Impressão premium, design gráfico e embalagens sob medida.",
+        content: "Impressão offset e digital de alta qualidade, embalagens, cartões e materiais promocionais. Prazos rápidos, acabamentos premium e atendimento consultivo.",
       },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ffad3fe7-509d-4771-beb9-34762c53a901/id-preview-8ba8c614--175f4a6b-f4d3-4dfb-90c9-654222059fbb.lovable.app-1784296463282.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ffad3fe7-509d-4771-beb9-34762c53a901/id-preview-8ba8c614--175f4a6b-f4d3-4dfb-90c9-654222059fbb.lovable.app-1784296463282.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
