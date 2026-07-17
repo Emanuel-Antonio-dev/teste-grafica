@@ -14,10 +14,10 @@ import {
 export const siteConfig = {
   name: "Gráfica Prisma",
   tagline: "Impressão premium com precisão de estúdio.",
-  whatsapp: "https://wa.me/351210000000",
-  phone: "+351 210 000 000",
-  email: "orcamentos@graficaprisma.pt",
-  address: "Rua da Tipografia, 42 — 1200-100 Lisboa",
+  whatsapp: "https://wa.me/244923000000",      // Código +244 (Angola)
+  phone: "+244 923 000 000",
+  email: "orcamentos@graficaprisma.ao",         // Domínio .ao
+  address: "Rua da Tipografia, 42 — Talatona, Luanda",
 };
 
 export const navLinks = [
@@ -122,32 +122,32 @@ export const whyChoose = [
   {
     icon: Truck,
     title: "Entrega em todo o país",
-    description: "Logística própria em Lisboa e Porto, com envios diários por transportadora.",
+    description: "Logística própria em Luanda, com envios diários para as províncias.",
   },
 ];
 
 export const testimonials = [
   {
-    name: "Marta Antunes",
-    role: "Diretora Criativa, Studio Norte",
+    name: "João Mendes",
+    role: "Diretor Criativo, Estúdio Kwanza",
     quote:
       "A Prisma tornou-se uma extensão do nosso estúdio. A qualidade de impressão e o rigor de cor são simplesmente incomparáveis.",
   },
   {
-    name: "Ricardo Vaz",
-    role: "Fundador, Casa Vaz Wines",
+    name: "Maria dos Santos",
+    role: "Fundadora, Casa de Angola",
     quote:
       "Rótulos, caixas e catálogos — entregam sempre no prazo e com um acabamento que valoriza a marca.",
   },
   {
-    name: "Sofia Belo",
-    role: "Marketing Manager, Lumina",
+    name: "Nádia Ferreira",
+    role: "Marketing Manager, Grupo Sol",
     quote:
       "Atendimento consultivo, propostas transparentes e execução impecável. Recomendo sem reservas.",
   },
   {
-    name: "André Costa",
-    role: "Sócio, Estúdio Grão",
+    name: "José Cambuta",
+    role: "Sócio, Construtora Monte Belo",
     quote:
       "Trabalho consistente há mais de cinco anos. Nunca falharam um prazo — e a cor é sempre exata.",
   },
@@ -171,12 +171,20 @@ export const faqs = [
     a: "PDF/X-1a ou PDF/X-4 em CMYK com 3mm de sangria e imagens a 300 dpi. Podemos rever e adaptar os seus ficheiros.",
   },
   {
-    q: "Fazem entregas fora de Lisboa?",
-    a: "Sim, entregamos em todo o país. Portes calculados no orçamento consoante volume e destino.",
+    q: "Fazem entregas fora de Luanda?",
+    a: "Sim, entregamos para todo o território nacional angolano. Os portes são calculados no orçamento consoante a província e o volume da encomenda.",
   },
 ];
 
 export const clients = [
-  "AURORA", "NORDIC", "LUMINA", "CASA VAZ", "STUDIO NORTE",
-  "GRÃO", "MONTE", "OCTAVA", "PRISM", "HORIZONTE",
+  "KWANZA",
+  "SUMOL",
+  "LUBANGO",
+  "CASA ANGOLA",
+  "KINAXI",
+  "GRUPO SOL",
+  "MONTE BELO",
+  "OCTAVA",
+  "KWATA",
+  "HORIZONTE",
 ];

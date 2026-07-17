@@ -1,158 +1,186 @@
 import { motion } from "motion/react";
-import { ArrowRight, MessageCircle, Sparkles, Zap, Palette } from "lucide-react";
+import {
+  ArrowRight,
+  MessageCircle,
+  Sparkles,
+  Printer,
+  Palette,
+  CheckCircle,
+  Clock,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
-import heroImg from "@/assets/hero-print.jpg";
 
+// --- Variants ---
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as const },
+    transition: {
+      duration: 0.7,
+      delay: i * 0.08,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   }),
 };
 
+const containerStagger = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+};
+
+const itemStagger = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+};
+
+// --- Componente de linhas animadas (novo background) ---
+function AnimatedLines() {
+  const lines = [
+    { color: "var(--brand)", opacity: 0.12, width: 120, height: 2, x: "0%", y: "15%", duration: 18, delay: 0 },
+    { color: "var(--primary)", opacity: 0.08, width: 200, height: 1.5, x: "-10%", y: "35%", duration: 22, delay: 2 },
+    { color: "var(--highlight)", opacity: 0.1, width: 160, height: 2.5, x: "5%", y: "55%", duration: 20, delay: 4 },
+    { color: "var(--brand)", opacity: 0.07, width: 250, height: 1.5, x: "-20%", y: "75%", duration: 25, delay: 1 },
+    { color: "var(--primary)", opacity: 0.09, width: 180, height: 2, x: "10%", y: "90%", duration: 19, delay: 3 },
+    // Linhas adicionais com diferentes ângulos
+    { color: "var(--highlight)", opacity: 0.06, width: 140, height: 3, x: "-5%", y: "45%", duration: 30, delay: 0, angle: 15 },
+    { color: "var(--brand)", opacity: 0.05, width: 220, height: 2, x: "15%", y: "65%", duration: 28, delay: 2, angle: -10 },
+  ];
+
+  return (
+    <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+      {lines.map((line, index) => {
+        // Transformações: rotação e posição
+        const style: React.CSSProperties = {
+          width: line.width,
+          height: line.height,
+          backgroundColor: line.color,
+          opacity: line.opacity,
+          position: "absolute",
+          left: line.x,
+          top: line.y,
+          transform: `rotate(${line.angle || 0}deg)`,
+          borderRadius: "9999px",
+          filter: "blur(0.5px)",
+        };
+
+        // Movimento horizontal contínuo (ida e volta)
+        const xMovement = line.x.includes("-") ? "30%" : "-30%";
+
+        return (
+          <motion.div
+            key={index}
+            style={style}
+            animate={{
+              x: [0, xMovement, 0],
+            }}
+            transition={{
+              duration: line.duration,
+              delay: line.delay,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+// --- Hero principal ---
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:pt-48 lg:pb-28">
+    <section
+      id="top"
+      className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:pt-48 lg:pb-28"
+      aria-labelledby="hero-title"
+    >
+      {/* Gradiente de fundo */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,color-mix(in_oklab,var(--brand)_15%,transparent),transparent)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center_top,color-mix(in_oklab,var(--brand)_20%,transparent)_0%,transparent_70%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-border to-transparent"
+        className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent"
       />
 
-      <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-8">
-        <div>
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            custom={0}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-highlight" />
-            Impressão premium em Portugal desde 2007
-          </motion.div>
+      {/* Fundo com linhas animadas */}
+      <AnimatedLines />
 
-          <motion.h1
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            custom={1}
-            className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-          >
-            Impressão premium com{" "}
-            <span className="text-gradient-brand">precisão de estúdio</span>.
-          </motion.h1>
+      {/* Conteúdo centralizado */}
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <motion.h1
+          id="hero-title"
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          custom={1}
+          className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+        >
+          Impressão premium com{" "}
+          <span className="text-gradient-brand">precisão de estúdio</span>.
+        </motion.h1>
 
-          <motion.p
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            custom={2}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
-          >
-            Cartões, embalagens, catálogos e sinalética produzidos com fidelidade de cor
-            absoluta, acabamentos de luxo e prazos que respeitamos ao dia.
-          </motion.p>
-
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            custom={3}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            <Button asChild size="lg" className="gap-2">
-              <a href="#contacto">
-                Solicitar orçamento
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="gap-2">
-              <a href={siteConfig.whatsapp} target="_blank" rel="noreferrer">
-                <MessageCircle className="h-4 w-4" />
-                Falar por WhatsApp
-              </a>
-            </Button>
-          </motion.div>
-
-          <motion.dl
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            custom={4}
-            className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8 max-w-md"
-          >
-            {[
-              { k: "18+", v: "Anos" },
-              { k: "2.4k+", v: "Projetos" },
-              { k: "48h", v: "Entrega expresso" },
-            ].map((it) => (
-              <div key={it.v}>
-                <dt className="text-2xl font-semibold text-foreground">{it.k}</dt>
-                <dd className="mt-1 text-xs text-muted-foreground">{it.v}</dd>
-              </div>
-            ))}
-          </motion.dl>
-        </div>
+        <motion.p
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          custom={2}
+          className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+        >
+          Transformamos as suas ideias em realidade com acabamentos de luxo,
+          fidelidade de cor absoluta e prazos que cumprimos – do cartão de visita
+          à grande formato.
+        </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
+          variants={containerStagger}
+          initial="hidden"
+          animate="show"
+          className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4"
         >
-          <div className="relative overflow-hidden rounded-3xl border border-border shadow-elegant">
-            <img
-              src={heroImg}
-              alt="Impressora offset e materiais impressos premium"
-              width={1600}
-              height={1200}
-              fetchPriority="high"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-background/40 via-transparent to-transparent" />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -30, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="absolute -left-4 top-10 hidden rounded-2xl border border-border bg-card/90 p-4 shadow-soft backdrop-blur sm:block"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Zap className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Entrega expresso</p>
-                <p className="text-sm font-semibold text-foreground">48 horas</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30, y: -20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.7 }}
-            className="absolute -right-4 bottom-10 hidden rounded-2xl border border-border bg-card/90 p-4 shadow-soft backdrop-blur sm:block"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg gradient-brand text-brand-foreground">
-                <Palette className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Fidelidade de cor</p>
-                <p className="text-sm font-semibold text-foreground">Fluxo ICC calibrado</p>
-              </div>
-            </div>
-          </motion.div>
+          {[
+            { icon: Printer, label: "Offset digital", desc: "Tiragens curtas e longas" },
+            { icon: Palette, label: "Acabamentos", desc: "Verniz, relevo, hot stamp" },
+            { icon: CheckCircle, label: "Cor calibrada", desc: "Fluxo ICC profissional" },
+            { icon: Clock, label: "Entrega rápida", desc: "48h em Lisboa/Porto" },
+          ].map((item) => (
+            <motion.div
+              key={item.label}
+              variants={itemStagger}
+              className="flex flex-col items-center rounded-xl border border-border/40 bg-card/50 p-4 backdrop-blur-sm transition-colors hover:border-primary/30 hover:bg-card/80"
+            >
+              <item.icon className="mb-2 h-6 w-6 text-primary" aria-hidden="true" />
+              <h3 className="text-sm font-semibold text-foreground">{item.label}</h3>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
+            </motion.div>
+          ))}
         </motion.div>
+
+        <motion.dl
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          custom={6}
+          className="mt-10 grid grid-cols-3 gap-4 border-t border-border/40 pt-8 max-w-lg mx-auto"
+        >
+          {[
+            { k: "18+", v: "Anos de experiência" },
+            { k: "2.4k+", v: "Projetos entregues" },
+            { k: "98%", v: "Clientes satisfeitos" },
+          ].map((item) => (
+            <div key={item.v}>
+              <dt className="text-2xl font-semibold text-foreground">{item.k}</dt>
+              <dd className="mt-1 text-xs text-muted-foreground">{item.v}</dd>
+            </div>
+          ))}
+        </motion.dl>
       </div>
     </section>
   );
