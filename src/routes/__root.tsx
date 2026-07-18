@@ -63,7 +63,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
       <div className="max-w-md">
-        <h1 className="text-6xl font-bold tracking-tight text-destructive">Oops!</h1>
+        <h1 className="text-6xl font-bold tracking-tight text-destructive">Oops, tente novamente!</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Algo correu mal</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           Ocorreu um erro ao carregar esta página. Pode tentar novamente ou voltar ao início.
