@@ -11,6 +11,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
 import { CTA } from "@/components/sections/CTA";
+import { Customizer } from "@/components/sections/productMockup";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -27,10 +28,10 @@ function LandingPage() {
         <Process />
         <Portfolio />
         <Statistics />
-        <Testimonials />
+        {/* <Testimonials /> */}
+        <CTA />
         <FAQ />
         <Contact />
-        <CTA />
       </main>
       <Footer />
     </div>

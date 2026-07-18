@@ -24,7 +24,7 @@ export const navLinks = [
   { href: "#servicos", label: "Serviços" },
   { href: "#processo", label: "Processo" },
   { href: "#portfolio", label: "Portefólio" },
-  { href: "#depoimentos", label: "Depoimentos" },
+  // { href: "#depoimentos", label: "Depoimentos" },
   { href: "#faq", label: "FAQ" },
   { href: "#contacto", label: "Contacto" },
 ];
