@@ -21,7 +21,7 @@ export function Statistics() {
     <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="Porquê a Prisma"
+          eyebrow="Porquê a AC PRINT"
           title="Rigor, cor e prazos que respeitamos"
           description="Investimos em maquinaria, calibração e processos para entregar qualidade previsível — sempre."
         />
