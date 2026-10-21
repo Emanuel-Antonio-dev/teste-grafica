@@ -23,7 +23,7 @@ export function Statistics() {
         <SectionHeader
           eyebrow="Porquê a AC PRINT"
           title="Rigor, cor e prazos que respeitamos"
-          description="Investimos em maquinaria, calibração e processos para entregar qualidade previsível — sempre."
+          description="Investimos em maquinaria, calibração e processos para entregar qualidade previsível sempre."
         />
 
         <div className="mt-14 grid grid-cols-2 gap-8 rounded-3xl border border-border bg-card p-10 shadow-soft lg:grid-cols-4">
